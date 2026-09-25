@@ -1,0 +1,33 @@
+{
+  "source": "Coordinates geocoded 2026-09-25 via Google Maps geocoder. Demo coverage set - the LG Directory scheme extends this to every panchayat in India (same id structure: state/district/name).",
+  "panchayats": [
+    {"id": "tn-thanjavur-papanasam", "name": "Papanasam", "name_ta": "பாபநாசம்", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.9296, "lng": 79.2705},
+    {"id": "tn-thanjavur-kumbakonam", "name": "Kumbakonam", "name_ta": "கும்பகோணம்", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.9602, "lng": 79.3845},
+    {"id": "tn-thanjavur-orathanadu", "name": "Orathanadu", "name_ta": "ஓரத்தநாடு", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.6277, "lng": 79.2525},
+    {"id": "tn-thanjavur-thiruvaiyaru", "name": "Thiruvaiyaru", "name_ta": "திருவையாறு", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.8799, "lng": 79.1060},
+    {"id": "tn-thanjavur-melattur", "name": "Melattur", "name_ta": "மேலத்தூர்", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.8430, "lng": 79.2620},
+    {"id": "tn-thanjavur-ammapettai", "name": "Ammapettai", "name_ta": "அம்மாபேட்டை", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.7971, "lng": 79.3157},
+    {"id": "tn-thanjavur-budalur", "name": "Budalur", "name_ta": "புதலூர்", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.7968, "lng": 78.9769},
+    {"id": "tn-thanjavur-vallam", "name": "Vallam", "name_ta": "வல்லம்", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.7140, "lng": 79.0702},
+    {"id": "tn-thanjavur-thirukattupalli", "name": "Thirukattupalli", "name_ta": "திருக்காட்டுப்பள்ளி", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.8490, "lng": 78.9542},
+    {"id": "tn-thanjavur-sengipatti", "name": "Sengipatti", "name_ta": "செங்கிபட்டி", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.7108, "lng": 78.9797},
+    {"id": "tn-thanjavur-ayyampettai", "name": "Ayyampettai", "name_ta": "ஐயம்பேட்டை", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.8963, "lng": 79.1944},
+    {"id": "tn-thanjavur-thiruvonam", "name": "Thiruvonam", "name_ta": "திருவோணம்", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.5077, "lng": 79.1591},
+    {"id": "tn-thanjavur-pattukkottai", "name": "Pattukkottai", "name_ta": "பட்டுக்கோட்டை", "district": "Thanjavur", "state": "Tamil Nadu", "lat": 10.4232, "lng": 79.3200},
+    {"id": "tn-madurai-melur", "name": "Melur", "name_ta": "மேலூர்", "district": "Madurai", "state": "Tamil Nadu", "lat": 10.0313, "lng": 78.3382},
+    {"id": "tn-madurai-alanganallur", "name": "Alanganallur", "name_ta": "அலங்காநல்லூர்", "district": "Madurai", "state": "Tamil Nadu", "lat": 10.0474, "lng": 78.0904},
+    {"id": "tn-madurai-vadipatti", "name": "Vadipatti", "name_ta": "வாடிப்பட்டி", "district": "Madurai", "state": "Tamil Nadu", "lat": 10.0843, "lng": 77.9610},
+    {"id": "tn-madurai-thirumangalam", "name": "Thirumangalam", "name_ta": "திருமங்கலம்", "district": "Madurai", "state": "Tamil Nadu", "lat": 9.8216, "lng": 77.9891},
+    {"id": "tn-madurai-sholavandan", "name": "Sholavandan", "name_ta": "சோழவந்தான்", "district": "Madurai", "state": "Tamil Nadu", "lat": 10.0221, "lng": 77.9615},
+    {"id": "tn-madurai-kalligudi", "name": "Kalligudi", "name_ta": "கள்ளிக்குடி", "district": "Madurai", "state": "Tamil Nadu", "lat": 9.7154, "lng": 77.9567},
+    {"id": "tn-coimbatore-pollachi", "name": "Pollachi", "name_ta": "பொள்ளாச்சி", "district": "Coimbatore", "state": "Tamil Nadu", "lat": 10.6609, "lng": 77.0048},
+    {"id": "tn-coimbatore-mettupalayam", "name": "Mettupalayam", "name_ta": "மேட்டுப்பாளையம்", "district": "Coimbatore", "state": "Tamil Nadu", "lat": 11.3028, "lng": 76.9383},
+    {"id": "tn-coimbatore-sulur", "name": "Sulur", "name_ta": "சூலூர்", "district": "Coimbatore", "state": "Tamil Nadu", "lat": 11.0254, "lng": 77.1246},
+    {"id": "tn-coimbatore-annur", "name": "Annur", "name_ta": "அன்னூர்", "district": "Coimbatore", "state": "Tamil Nadu", "lat": 11.2321, "lng": 77.1067},
+    {"id": "tn-coimbatore-kinathukadavu", "name": "Kinathukadavu", "name_ta": "கிணத்துக்கடவு", "district": "Coimbatore", "state": "Tamil Nadu", "lat": 10.8172, "lng": 77.0186},
+    {"id": "tn-coimbatore-madukkarai", "name": "Madukkarai", "name_ta": "மதுக்கரை", "district": "Coimbatore", "state": "Tamil Nadu", "lat": 10.9145, "lng": 76.9486},
+    {"id": "ap-guntur-guntur", "name": "Guntur", "name_ta": "குண்டூர்", "district": "Guntur", "state": "Andhra Pradesh", "lat": 16.3067, "lng": 80.4365},
+    {"id": "ka-mandya-mandya", "name": "Mandya", "name_ta": "மந்தியா", "district": "Mandya", "state": "Karnataka", "lat": 12.5218, "lng": 76.8951},
+    {"id": "pb-ludhiana-ludhiana", "name": "Ludhiana", "name_ta": "லூதியானா", "district": "Ludhiana", "state": "Punjab", "lat": 30.9010, "lng": 75.8573}
+  ]
+}
