@@ -1,0 +1,12 @@
+{
+  "name": "Vaanam - Panchayat Agro-Met Advisories",
+  "short_name": "Vaanam",
+  "description": "Panchayat-level farming advisories in Tamil, on any phone.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
