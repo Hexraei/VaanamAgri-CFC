@@ -1,7 +1,7 @@
 // Crop-doctor: farmer photographs a sick leaf; Gemini multimodal identifies
 // the likely disease and suggests treatment in Tamil + English.
 
-const GEMINI_MODEL = 'gemini-flash-latest';
+const GEMINI_MODELS = ['gemini-flash-latest', 'gemini-3.1-flash-lite'];
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
@@ -26,32 +26,36 @@ export default async function handler(req: any, res: any) {
     `If the photo is not a plant leaf, set finding to "not_a_leaf" and say what you see instead.`
   ].join('\n');
 
-  try {
-    const g = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
-      {
-        method: 'POST',
-        headers: { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                { text: prompt },
-                { inline_data: { mime_type: mimeType ?? 'image/jpeg', data: imageBase64 } }
-              ]
-            }
-          ],
-          generationConfig: { responseMimeType: 'application/json', temperature: 0.2 }
-        })
-      }
-    );
-    if (!g.ok) throw new Error(`gemini ${g.status}`);
-    const data = await g.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!text) throw new Error('gemini empty response');
-    res.setHeader('Cache-Control', 'no-store');
-    return res.status(200).json(JSON.parse(text));
-  } catch (e: any) {
-    return res.status(502).json({ error: 'diagnosis failed', detail: String(e?.message ?? e) });
+  let lastErr = 'gemini: no models configured';
+  for (const model of GEMINI_MODELS) {
+    try {
+      const g = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: 'POST',
+          headers: { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  { text: prompt },
+                  { inline_data: { mime_type: mimeType ?? 'image/jpeg', data: imageBase64 } }
+                ]
+              }
+            ],
+            generationConfig: { responseMimeType: 'application/json', temperature: 0.2 }
+          })
+        }
+      );
+      if (!g.ok) throw new Error(`gemini ${g.status} (${model})`);
+      const data = await g.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error(`gemini empty response (${model})`);
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(200).json(JSON.parse(text));
+    } catch (e: any) {
+      lastErr = String(e?.message ?? e);
+    }
   }
+  return res.status(502).json({ error: 'diagnosis failed', detail: lastErr });
 }

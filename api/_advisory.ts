@@ -9,7 +9,10 @@
 import type { Advisory, AdvisoryAction, DayForecast, Panchayat } from './_types.js';
 import type { Crop } from './_rules.js';
 
-const GEMINI_MODEL = 'gemini-flash-latest';
+// Ordered model chain: first that answers wins. Gemini 3.x flash models
+// spike to 503 UNAVAILABLE under demand; 3.1-flash-lite is the reliable
+// backup. gemini-2.5-flash is retired for new API keys (404).
+const GEMINI_MODELS = ['gemini-flash-latest', 'gemini-3.1-flash-lite'];
 
 export function buildFallbackSummary(
   panchayat: Panchayat,
@@ -71,20 +74,28 @@ export async function generateWithGemini(
   apiKey: string,
   prompt: string
 ): Promise<{ summary_ta: string; summary_en: string; actions: Array<{ ta: string; en: string }> }> {
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
-    {
-      method: 'POST',
-      headers: { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { responseMimeType: 'application/json', temperature: 0.3 }
-      })
+  let lastErr = 'gemini: no models configured';
+  for (const model of GEMINI_MODELS) {
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: 'POST',
+          headers: { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: 'application/json', temperature: 0.3 }
+          })
+        }
+      );
+      if (!res.ok) throw new Error(`gemini ${res.status} (${model})`);
+      const data = await res.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error(`gemini empty response (${model})`);
+      return JSON.parse(text);
+    } catch (e: any) {
+      lastErr = String(e?.message ?? e);
     }
-  );
-  if (!res.ok) throw new Error(`gemini ${res.status}`);
-  const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error('gemini empty response');
-  return JSON.parse(text);
+  }
+  throw new Error(lastErr);
 }
