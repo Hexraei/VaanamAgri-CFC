@@ -1,0 +1,71 @@
+{
+  "panchayat": {
+    "id": "tn-thanjavur-kumbakonam",
+    "name": "Kumbakonam",
+    "name_ta": "கும்பகோணம்",
+    "district": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.9602,
+    "lng": 79.3845
+  },
+  "crop": "banana",
+  "stage": "bunching",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:38.736Z",
+  "generatedBy": "rules",
+  "summaryEn": "Kumbakonam: Banana at Bunch emergence stage. No rain expected today. High 32.9°C, low 27.5°C. Conditions look normal - follow your regular schedule.",
+  "summaryTa": "கும்பகோணம்: வாழை குலை தோன்றல் நிலையில். இன்று மழை எதிர்பார்க்கப்படவில்லை. அதிகபட்சம் 32.9°செ, குறைந்தபட்சம் 27.5°செ. நிலை சாதாரணம் - வழக்கமான பணிகளைத் தொடரவும்.",
+  "actions": [],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 27.5,
+      "tmax": 32.9,
+      "precipMm": 0,
+      "precipProbMax": 7,
+      "humidityAvg": 59,
+      "windMaxKmh": 23,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 25.9,
+      "tmax": 35,
+      "precipMm": 0,
+      "precipProbMax": 3,
+      "humidityAvg": 64,
+      "windMaxKmh": 19,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 26.4,
+      "tmax": 35.4,
+      "precipMm": 0.1,
+      "precipProbMax": 30,
+      "humidityAvg": 65,
+      "windMaxKmh": 14,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 25.9,
+      "tmax": 34.8,
+      "precipMm": 8.4,
+      "precipProbMax": 72,
+      "humidityAvg": 78,
+      "windMaxKmh": 12,
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 24.2,
+      "tmax": 33.8,
+      "precipMm": 4.2,
+      "precipProbMax": 55,
+      "humidityAvg": 83,
+      "windMaxKmh": 11,
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "panchayat": {
+    "id": "tn-madurai-melur",
+    "name": "Melur",
+    "name_ta": "மேலூர்",
+    "district": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 10.0313,
+    "lng": 78.3382
+  },
+  "crop": "groundnut",
+  "stage": "pegging",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:39.309Z",
+  "generatedBy": "rules",
+  "summaryEn": "Melur: Groundnut at Pegging stage. No rain expected today. High 34.6°C, low 26.6°C. Conditions look normal - follow your regular schedule.",
+  "summaryTa": "மேலூர்: நிலக்கடலை கடலை உருவாக்கம் நிலையில். இன்று மழை எதிர்பார்க்கப்படவில்லை. அதிகபட்சம் 34.6°செ, குறைந்தபட்சம் 26.6°செ. நிலை சாதாரணம் - வழக்கமான பணிகளைத் தொடரவும்.",
+  "actions": [],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 26.6,
+      "tmax": 34.6,
+      "precipMm": 0,
+      "precipProbMax": 0,
+      "humidityAvg": 53,
+      "windMaxKmh": 23,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 24.7,
+      "tmax": 34.7,
+      "precipMm": 0.3,
+      "precipProbMax": 8,
+      "humidityAvg": 62,
+      "windMaxKmh": 9,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 25.1,
+      "tmax": 35.1,
+      "precipMm": 0.3,
+      "precipProbMax": 47,
+      "humidityAvg": 64,
+      "windMaxKmh": 15,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 26.2,
+      "tmax": 35.6,
+      "precipMm": 8.3,
+      "precipProbMax": 86,
+      "humidityAvg": 74,
+      "windMaxKmh": 10,
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 25.2,
+      "tmax": 32.5,
+      "precipMm": 4.9,
+      "precipProbMax": 76,
+      "humidityAvg": 79,
+      "windMaxKmh": 11,
+      "confidence": "high"
+    }
+  ]
+}

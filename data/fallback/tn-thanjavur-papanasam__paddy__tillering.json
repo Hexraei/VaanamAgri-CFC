@@ -1,0 +1,84 @@
+{
+  "panchayat": {
+    "id": "tn-thanjavur-papanasam",
+    "name": "Papanasam",
+    "name_ta": "பாபநாசம்",
+    "district": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.9296,
+    "lng": 79.2705
+  },
+  "crop": "paddy",
+  "stage": "tillering",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:38.172Z",
+  "generatedBy": "rules",
+  "summaryEn": "Papanasam: Paddy (Rice) at Tillering stage. No rain expected today. High 32.7°C, low 27.7°C. Priority: No rain for 3+ days during a critical stage - irrigate today, preferably evening.",
+  "summaryTa": "பாபநாசம்: நெல் கத்தரிப்பு நிலையில். இன்று மழை எதிர்பார்க்கப்படவில்லை. அதிகபட்சம் 32.7°செ, குறைந்தபட்சம் 27.7°செ. முக்கியம்: 3+ நாட்கள் மழை இல்லை, முக்கிய நிலை - இன்று மாலை நீர்ப்பாய்ச்சல் செய்யுங்கள்.",
+  "actions": [
+    {
+      "ruleId": "irrigate-dry-flowering",
+      "severity": "high",
+      "en": "No rain for 3+ days during a critical stage - irrigate today, preferably evening.",
+      "ta": "3+ நாட்கள் மழை இல்லை, முக்கிய நிலை - இன்று மாலை நீர்ப்பாய்ச்சல் செய்யுங்கள்."
+    },
+    {
+      "ruleId": "spray-wind",
+      "severity": "medium",
+      "en": "Wind too strong for spraying - drift will waste chemical and hit neighbouring fields.",
+      "ta": "காற்று அதிகம் - தெளிப்பு வீணாகும், அடுத்த வயலுக்குச் செல்லும்."
+    }
+  ],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 27.7,
+      "tmax": 32.7,
+      "precipMm": 0,
+      "precipProbMax": 11,
+      "humidityAvg": 57,
+      "windMaxKmh": 24,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 26,
+      "tmax": 35.2,
+      "precipMm": 0,
+      "precipProbMax": 4,
+      "humidityAvg": 63,
+      "windMaxKmh": 21,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 26.6,
+      "tmax": 35.3,
+      "precipMm": 0.2,
+      "precipProbMax": 34,
+      "humidityAvg": 64,
+      "windMaxKmh": 14,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 25.9,
+      "tmax": 34.9,
+      "precipMm": 7.3,
+      "precipProbMax": 68,
+      "humidityAvg": 76,
+      "windMaxKmh": 12,
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 24.2,
+      "tmax": 34.1,
+      "precipMm": 4.1,
+      "precipProbMax": 58,
+      "humidityAvg": 81,
+      "windMaxKmh": 9,
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "panchayat": {
+    "id": "tn-coimbatore-pollachi",
+    "name": "Pollachi",
+    "name_ta": "பொள்ளாச்சி",
+    "district": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 10.6609,
+    "lng": 77.0048
+  },
+  "crop": "banana",
+  "stage": "vegetative",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:39.875Z",
+  "generatedBy": "rules",
+  "summaryEn": "Pollachi: Banana at Vegetative stage. Light rain possible today (1.9 mm). High 32.2°C, low 23.9°C. Priority: Strong winds expected - prop tall plants with casuarina poles today.",
+  "summaryTa": "பொள்ளாச்சி: வாழை வளர்ச்சி நிலையில். இன்று லேசான மழை சாத்தியம் (1.9 மிமீ). அதிகபட்சம் 32.2°செ, குறைந்தபட்சம் 23.9°செ. முக்கியம்: பலத்த காற்று - உயரமான தாவரங்களுக்கு இன்றே சவுக்கு கம்பு தாங்கவும்.",
+  "actions": [
+    {
+      "ruleId": "wind-propping",
+      "severity": "high",
+      "en": "Strong winds expected - prop tall plants with casuarina poles today.",
+      "ta": "பலத்த காற்று - உயரமான தாவரங்களுக்கு இன்றே சவுக்கு கம்பு தாங்கவும்."
+    }
+  ],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 23.9,
+      "tmax": 32.2,
+      "precipMm": 1.9,
+      "precipProbMax": 54,
+      "humidityAvg": 69,
+      "windMaxKmh": 31,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 24.7,
+      "tmax": 31.6,
+      "precipMm": 0.4,
+      "precipProbMax": 24,
+      "humidityAvg": 68,
+      "windMaxKmh": 30,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 23.6,
+      "tmax": 33.3,
+      "precipMm": 0.4,
+      "precipProbMax": 31,
+      "humidityAvg": 69,
+      "windMaxKmh": 25,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 23.9,
+      "tmax": 34.4,
+      "precipMm": 0.7,
+      "precipProbMax": 58,
+      "humidityAvg": 68,
+      "windMaxKmh": 23,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 24.1,
+      "tmax": 33.4,
+      "precipMm": 1.2,
+      "precipProbMax": 65,
+      "humidityAvg": 70,
+      "windMaxKmh": 22,
+      "confidence": "high"
+    }
+  ]
+}

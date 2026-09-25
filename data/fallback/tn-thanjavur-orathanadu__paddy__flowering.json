@@ -1,0 +1,78 @@
+{
+  "panchayat": {
+    "id": "tn-thanjavur-orathanadu",
+    "name": "Orathanadu",
+    "name_ta": "ஓரத்தநாடு",
+    "district": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.6277,
+    "lng": 79.2525
+  },
+  "crop": "paddy",
+  "stage": "flowering",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:37.607Z",
+  "generatedBy": "rules",
+  "summaryEn": "Orathanadu: Paddy (Rice) at Flowering stage. No rain expected today. High 33.4°C, low 26.5°C. Priority: No rain for 3+ days during a critical stage - irrigate today, preferably evening.",
+  "summaryTa": "ஓரத்தநாடு: நெல் பூக்கும் நிலையில். இன்று மழை எதிர்பார்க்கப்படவில்லை. அதிகபட்சம் 33.4°செ, குறைந்தபட்சம் 26.5°செ. முக்கியம்: 3+ நாட்கள் மழை இல்லை, முக்கிய நிலை - இன்று மாலை நீர்ப்பாய்ச்சல் செய்யுங்கள்.",
+  "actions": [
+    {
+      "ruleId": "irrigate-dry-flowering",
+      "severity": "high",
+      "en": "No rain for 3+ days during a critical stage - irrigate today, preferably evening.",
+      "ta": "3+ நாட்கள் மழை இல்லை, முக்கிய நிலை - இன்று மாலை நீர்ப்பாய்ச்சல் செய்யுங்கள்."
+    }
+  ],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 26.5,
+      "tmax": 33.4,
+      "precipMm": 0,
+      "precipProbMax": 4,
+      "humidityAvg": 61,
+      "windMaxKmh": 15,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 25.6,
+      "tmax": 35.4,
+      "precipMm": 0.1,
+      "precipProbMax": 7,
+      "humidityAvg": 65,
+      "windMaxKmh": 20,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 26.4,
+      "tmax": 34.8,
+      "precipMm": 0.2,
+      "precipProbMax": 15,
+      "humidityAvg": 68,
+      "windMaxKmh": 15,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 26.6,
+      "tmax": 34.6,
+      "precipMm": 0.8,
+      "precipProbMax": 66,
+      "humidityAvg": 76,
+      "windMaxKmh": 14,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 25.1,
+      "tmax": 34.3,
+      "precipMm": 2,
+      "precipProbMax": 65,
+      "humidityAvg": 78,
+      "windMaxKmh": 11,
+      "confidence": "high"
+    }
+  ]
+}

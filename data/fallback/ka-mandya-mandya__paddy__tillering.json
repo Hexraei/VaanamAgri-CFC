@@ -1,0 +1,84 @@
+{
+  "panchayat": {
+    "id": "ka-mandya-mandya",
+    "name": "Mandya",
+    "name_ta": "மந்தியா",
+    "district": "Mandya",
+    "state": "Karnataka",
+    "lat": 12.5218,
+    "lng": 76.8951
+  },
+  "crop": "paddy",
+  "stage": "tillering",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:41.021Z",
+  "generatedBy": "rules",
+  "summaryEn": "Mandya: Paddy (Rice) at Tillering stage. Rain expected today (6.3 mm). High 28.5°C, low 21.7°C. Priority: Skip pesticide/fertilizer spraying - rain expected within 24h will wash it off.",
+  "summaryTa": "மந்தியா: நெல் கத்தரிப்பு நிலையில். இன்று மழை எதிர்பார்க்கப்படுகிறது (6.3 மிமீ). அதிகபட்சம் 28.5°செ, குறைந்தபட்சம் 21.7°செ. முக்கியம்: மருந்து/உரம் தெளிக்காதீர்கள் - 24 மணி நேரத்தில் மழை வரும், கழுவிச் செல்லும்.",
+  "actions": [
+    {
+      "ruleId": "spray-rain-washoff",
+      "severity": "high",
+      "en": "Skip pesticide/fertilizer spraying - rain expected within 24h will wash it off.",
+      "ta": "மருந்து/உரம் தெளிக்காதீர்கள் - 24 மணி நேரத்தில் மழை வரும், கழுவிச் செல்லும்."
+    },
+    {
+      "ruleId": "spray-wind",
+      "severity": "medium",
+      "en": "Wind too strong for spraying - drift will waste chemical and hit neighbouring fields.",
+      "ta": "காற்று அதிகம் - தெளிப்பு வீணாகும், அடுத்த வயலுக்குச் செல்லும்."
+    }
+  ],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 21.7,
+      "tmax": 28.5,
+      "precipMm": 6.3,
+      "precipProbMax": 100,
+      "humidityAvg": 78,
+      "windMaxKmh": 22,
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 19.8,
+      "tmax": 30.3,
+      "precipMm": 0.5,
+      "precipProbMax": 46,
+      "humidityAvg": 71,
+      "windMaxKmh": 19,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 18.9,
+      "tmax": 30.5,
+      "precipMm": 0,
+      "precipProbMax": 21,
+      "humidityAvg": 73,
+      "windMaxKmh": 14,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 20.7,
+      "tmax": 31.1,
+      "precipMm": 14.6,
+      "precipProbMax": 84,
+      "humidityAvg": 81,
+      "windMaxKmh": 12,
+      "confidence": "low"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 20.7,
+      "tmax": 30.3,
+      "precipMm": 6.9,
+      "precipProbMax": 88,
+      "humidityAvg": 86,
+      "windMaxKmh": 12,
+      "confidence": "high"
+    }
+  ]
+}

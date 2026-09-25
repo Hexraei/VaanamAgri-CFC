@@ -1,0 +1,84 @@
+{
+  "panchayat": {
+    "id": "ap-guntur-guntur",
+    "name": "Guntur",
+    "name_ta": "குண்டூர்",
+    "district": "Guntur",
+    "state": "Andhra Pradesh",
+    "lat": 16.3067,
+    "lng": 80.4365
+  },
+  "crop": "paddy",
+  "stage": "transplanting",
+  "lang": "ta",
+  "generatedAt": "2026-09-25T17:10:40.449Z",
+  "generatedBy": "rules",
+  "summaryEn": "Guntur: Paddy (Rice) at Transplanting stage. Rain expected today (7.1 mm). High 32.5°C, low 24.9°C. Priority: Skip pesticide/fertilizer spraying - rain expected within 24h will wash it off.",
+  "summaryTa": "குண்டூர்: நெல் நடவு நிலையில். இன்று மழை எதிர்பார்க்கப்படுகிறது (7.1 மிமீ). அதிகபட்சம் 32.5°செ, குறைந்தபட்சம் 24.9°செ. முக்கியம்: மருந்து/உரம் தெளிக்காதீர்கள் - 24 மணி நேரத்தில் மழை வரும், கழுவிச் செல்லும்.",
+  "actions": [
+    {
+      "ruleId": "spray-rain-washoff",
+      "severity": "high",
+      "en": "Skip pesticide/fertilizer spraying - rain expected within 24h will wash it off.",
+      "ta": "மருந்து/உரம் தெளிக்காதீர்கள் - 24 மணி நேரத்தில் மழை வரும், கழுவிச் செல்லும்."
+    },
+    {
+      "ruleId": "spray-wind",
+      "severity": "medium",
+      "en": "Wind too strong for spraying - drift will waste chemical and hit neighbouring fields.",
+      "ta": "காற்று அதிகம் - தெளிப்பு வீணாகும், அடுத்த வயலுக்குச் செல்லும்."
+    }
+  ],
+  "forecastDays": [
+    {
+      "date": "2026-09-25",
+      "tmin": 24.9,
+      "tmax": 32.5,
+      "precipMm": 7.1,
+      "precipProbMax": 100,
+      "humidityAvg": 70,
+      "windMaxKmh": 22,
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-09-26",
+      "tmin": 26.3,
+      "tmax": 32.9,
+      "precipMm": 0,
+      "precipProbMax": 2,
+      "humidityAvg": 69,
+      "windMaxKmh": 17,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-27",
+      "tmin": 25.3,
+      "tmax": 33.1,
+      "precipMm": 0,
+      "precipProbMax": 6,
+      "humidityAvg": 74,
+      "windMaxKmh": 15,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-28",
+      "tmin": 23.7,
+      "tmax": 33.1,
+      "precipMm": 0,
+      "precipProbMax": 2,
+      "humidityAvg": 77,
+      "windMaxKmh": 12,
+      "confidence": "high"
+    },
+    {
+      "date": "2026-09-29",
+      "tmin": 24.5,
+      "tmax": 33.2,
+      "precipMm": 0,
+      "precipProbMax": 8,
+      "humidityAvg": 77,
+      "windMaxKmh": 11,
+      "confidence": "high"
+    }
+  ]
+}
