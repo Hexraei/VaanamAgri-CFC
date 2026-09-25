@@ -89,6 +89,9 @@ export function speakAdvisory(key: string, fallbackText: string, onEnd: () => vo
   audio.preload = 'auto';
   audio.addEventListener('playing', () => {
     started = true;
+    // on slow connections the watchdog fallback may already have taken over;
+    // never let a late-starting clip talk over the on-device voice
+    if (settled) audio.pause();
   });
   // missing clip (or an HTML SPA-fallback body) ends here -> on-device voice
   audio.addEventListener('error', toSpeech);
