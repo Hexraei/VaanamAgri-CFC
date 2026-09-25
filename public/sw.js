@@ -1,7 +1,7 @@
 // Vaanam service worker: cache-first app shell, network-first API with
 // last-good fallback. A farmer in a low-signal field still opens the app.
-const SHELL = 'vaanam-shell-v1';
-const DATA = 'vaanam-data-v1';
+const SHELL = 'vaanam-shell-v2';
+const DATA = 'vaanam-data-v2';
 const SHELL_ASSETS = ['/', '/index.html', '/manifest.webmanifest', '/icon.svg'];
 
 self.addEventListener('install', (e) => {
@@ -45,7 +45,23 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // cache-first for shell + build assets
+  // navigations: network first (new deploys show up on one reload), cache as offline fallback
+  if (e.request.mode === 'navigate') {
+    e.respondWith(
+      fetch(e.request)
+        .then((res) => {
+          const clone = res.clone();
+          caches.open(SHELL).then((c) => c.put('/index.html', clone));
+          return res;
+        })
+        .catch(() =>
+          caches.match(e.request).then((cached) => cached || caches.match('/index.html'))
+        )
+    );
+    return;
+  }
+
+  // cache-first for hashed build assets + audio clips (immutable/static)
   e.respondWith(
     caches.match(e.request).then(
       (cached) =>
