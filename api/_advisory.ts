@@ -9,7 +9,7 @@
 import type { Advisory, AdvisoryAction, DayForecast, Panchayat } from './_types.js';
 import type { Crop } from './_rules.js';
 
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-flash-latest';
 
 export function buildFallbackSummary(
   panchayat: Panchayat,

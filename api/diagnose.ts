@@ -1,7 +1,7 @@
 // Crop-doctor: farmer photographs a sick leaf; Gemini multimodal identifies
 // the likely disease and suggests treatment in Tamil + English.
 
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-flash-latest';
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
