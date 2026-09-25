@@ -1,12 +1,7 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { fetchCells, fetchElevation } from '../lib/openmeteo';
 import { downscale, neighbourPoints } from '../lib/downscale';
-import type { Panchayat, PanchayatForecast } from '../lib/types';
-
-const panchayats: Panchayat[] = JSON.parse(
-  readFileSync(join(process.cwd(), 'data', 'panchayats.json'), 'utf8')
-).panchayats;
+import { panchayats } from './_data';
+import type { PanchayatForecast } from '../lib/types';
 
 export default async function handler(req: any, res: any) {
   const id = String(req.query?.panchayat ?? '');

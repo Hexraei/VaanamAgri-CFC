@@ -1,16 +1,9 @@
-import { readFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
 import { fetchCells, fetchElevation } from '../lib/openmeteo';
 import { downscale, neighbourPoints } from '../lib/downscale';
 import { evaluateRules, type Crop } from '../lib/rules';
 import { buildFallbackSummary, buildGeminiPrompt, generateWithGemini } from '../lib/advisory';
-import type { Advisory, Panchayat } from '../lib/types';
-
-const dataDir = join(process.cwd(), 'data');
-const panchayats: Panchayat[] = JSON.parse(
-  readFileSync(join(dataDir, 'panchayats.json'), 'utf8')
-).panchayats;
-const crops: Crop[] = JSON.parse(readFileSync(join(dataDir, 'crops.json'), 'utf8')).crops;
+import { panchayats, crops, fallbacks } from './_data';
+import type { Advisory } from '../lib/types';
 
 // In-warm-instance cache: panchayat+crop+stage -> advisory (30 min TTL)
 const cache = new Map<string, { at: number; advisory: Advisory }>();
@@ -85,10 +78,10 @@ export default async function handler(req: any, res: any) {
     return res.status(200).json(advisory);
   } catch (e: any) {
     // last-resort: serve the committed pre-generated fallback if one exists
-    const fallbackPath = join(dataDir, 'fallback', `${id}__${cropId}__${stageId}.json`);
-    if (existsSync(fallbackPath)) {
+    const committed = fallbacks[`${id}__${cropId}__${stageId}`];
+    if (committed) {
       res.setHeader('X-Vaanam-Fallback', 'committed');
-      return res.status(200).json(JSON.parse(readFileSync(fallbackPath, 'utf8')));
+      return res.status(200).json(committed);
     }
     return res.status(502).json({ error: 'advisory generation failed', detail: String(e?.message ?? e) });
   }
