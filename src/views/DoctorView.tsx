@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { diagnose, type Diagnosis } from '../api';
+import Icon from '../components/Icon';
 
 function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -50,7 +51,7 @@ export default function DoctorView() {
         onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])}
       />
       <button className="upload-zone" onClick={() => inputRef.current?.click()}>
-        <span className="cam">📷</span>
+        <span className="cam"><Icon name="camera" size={36} /></span>
         Take a leaf photo
         <small>பாதிக்கப்பட்ட இலையை புகைப்படம் எடுக்கவும்</small>
       </button>

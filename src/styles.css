@@ -231,3 +231,12 @@ img { display: block; }
   padding: 6px 13px; border-radius: 999px;
   font-size: 0.86rem; font-weight: 600; letter-spacing: 0.01em;
 }
+
+/* icon alignment (SVG icons, no emoji) */
+.tab-icon { display: flex; align-items: center; justify-content: center; }
+.place-label { display: inline-flex; align-items: center; gap: 5px; min-width: 0; }
+.place-label svg { flex: none; }
+.wx-strip span { display: inline-flex; align-items: center; gap: 6px; }
+.voice-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+.upload-zone .cam { display: flex; align-items: center; justify-content: center; }
+.lang-toggle { display: inline-flex; align-items: center; justify-content: center; }

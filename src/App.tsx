@@ -6,14 +6,15 @@ import AdvisoryView from './views/AdvisoryView';
 import ForecastView from './views/ForecastView';
 import DoctorView from './views/DoctorView';
 import AboutView from './views/AboutView';
+import Icon from './components/Icon';
 
 type Tab = 'advisory' | 'forecast' | 'doctor' | 'about';
 
-const TABS: Array<{ id: Tab; en: string; ta: string; icon: string }> = [
-  { id: 'advisory', en: 'Advisory', ta: 'அறிவுரை', icon: '🌾' },
-  { id: 'forecast', en: 'Forecast', ta: 'வானிலை', icon: '🌦️' },
-  { id: 'doctor', en: 'Crop Doctor', ta: 'பயிர் மருத்துவர்', icon: '🍃' },
-  { id: 'about', en: 'About', ta: 'பற்றி', icon: 'ℹ️' }
+const TABS: Array<{ id: Tab; en: string; ta: string; icon: 'sprout' | 'cloud-sun' | 'leaf' | 'info' }> = [
+  { id: 'advisory', en: 'Advisory', ta: 'அறிவுரை', icon: 'sprout' },
+  { id: 'forecast', en: 'Forecast', ta: 'வானிலை', icon: 'cloud-sun' },
+  { id: 'doctor', en: 'Crop Doctor', ta: 'பயிர் மருத்துவர்', icon: 'leaf' },
+  { id: 'about', en: 'About', ta: 'பற்றி', icon: 'info' }
 ];
 
 export default function App() {
@@ -60,7 +61,7 @@ export default function App() {
       ) : (
         <>
           <button className="change-place" onClick={() => setSel((s) => ({ ...s, panchayatId: null }))}>
-            <span className="place-label">📍 {panchayat.name_ta} ({panchayat.name}), {panchayat.district}</span>
+            <span className="place-label"><Icon name="pin" size={16} /> {panchayat.name_ta} ({panchayat.name}), {panchayat.district}</span>
             <span className="change-link">change</span>
           </button>
           {tab === 'advisory' && <AdvisoryView panchayat={panchayat} sel={sel} setSel={setSel} />}
@@ -74,7 +75,7 @@ export default function App() {
         <nav className="tabbar">
           {TABS.map((t) => (
             <button key={t.id} className={tab === t.id ? 'tab active' : 'tab'} onClick={() => setTab(t.id)}>
-              <span className="tab-icon" aria-hidden>{t.icon}</span>
+              <span className="tab-icon"><Icon name={t.icon} size={22} /></span>
               <span className="tab-ta">{t.ta}</span>
               <span className="tab-en">{t.en}</span>
             </button>

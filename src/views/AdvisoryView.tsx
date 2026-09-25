@@ -3,6 +3,7 @@ import type { Advisory, Panchayat } from '../../api/_types';
 import { getAdvisory } from '../api';
 import { speakAdvisory, stopSpeaking } from '../tts';
 import type { Selection } from '../store';
+import Icon from '../components/Icon';
 
 const CROPS = [
   { id: 'paddy', en: 'Paddy', ta: 'நெல்' },
@@ -104,9 +105,9 @@ export default function AdvisoryView({
             <p className="advisory-text">{showEn ? advisory.summaryEn : advisory.summaryTa}</p>
             {advisory.forecastDays?.[0] && (
               <div className="wx-strip">
-                <span>🌡️ {advisory.forecastDays[0].tmin}–{advisory.forecastDays[0].tmax}°C</span>
-                <span>🌧️ {advisory.forecastDays[0].precipProbMax}% · {advisory.forecastDays[0].precipMm} mm</span>
-                <span>💨 {advisory.forecastDays[0].windMaxKmh} km/h</span>
+                <span><Icon name="thermometer" size={15} /> {advisory.forecastDays[0].tmin}–{advisory.forecastDays[0].tmax}°C</span>
+                <span><Icon name="cloud-rain" size={15} /> {advisory.forecastDays[0].precipProbMax}% · {advisory.forecastDays[0].precipMm} mm</span>
+                <span><Icon name="wind" size={15} /> {advisory.forecastDays[0].windMaxKmh} km/h</span>
               </div>
             )}
             <div className="advisory-actions-row">
@@ -126,7 +127,7 @@ export default function AdvisoryView({
                   }
                 }}
               >
-                {speaking ? '⏹ Stop' : '🔊 கேளுங்கள் (Listen)'}
+                {speaking ? <><Icon name="stop" size={18} /> Stop</> : <><Icon name="volume" size={20} /> கேளுங்கள் (Listen)</>}
               </button>
               <button className="lang-toggle" onClick={() => setShowEn((v) => !v)}>
                 {showEn ? 'தமிழில்' : 'In English'}
