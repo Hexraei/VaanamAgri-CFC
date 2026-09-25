@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Advisory, Panchayat } from '../../api/_types';
 import { getAdvisory } from '../api';
-import { speakTamil, stopSpeaking } from '../tts';
+import { speakAdvisory, stopSpeaking } from '../tts';
 import type { Selection } from '../store';
 
 const CROPS = [
@@ -108,8 +108,13 @@ export default function AdvisoryView({
                   if (speaking) {
                     stopSpeaking();
                     setSpeaking(false);
-                  } else if (speakTamil(advisory.summaryTa + '. ' + advisory.actions.map((a) => a.ta).join('. '))) {
+                  } else {
                     setSpeaking(true);
+                    speakAdvisory(
+                      `${advisory.panchayat.id}__${advisory.crop}__${advisory.stage}`,
+                      advisory.summaryTa + '. ' + advisory.actions.map((a) => a.ta).join('. '),
+                      () => setSpeaking(false)
+                    );
                   }
                 }}
               >

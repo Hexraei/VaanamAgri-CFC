@@ -19,7 +19,7 @@ spray pesticide, rain washes it off an hour later, money gone.
 2. **Turns the forecast into action**: an agronomy rule pack (spray windows, irrigation triggers,
    drainage warnings, pest-favouring conditions) fires on the downscaled days, and **Google Gemini**
    writes the advisory in plain Tamil + English.
-3. **Delivers it by voice**: on-device Tamil text-to-speech, because the target user is not reading
+3. **Delivers it by voice**: natural Tamil speech (pre-generated Edge TTS ta-IN-PallaviNeural clips shipped with the app; on-device TTS as the live-generation fallback), because the target user is not reading
    an English dashboard. The whole app is an offline-capable PWA for a cheap Android.
 4. **Crop Doctor**: the farmer photographs a sick leaf; Gemini multimodal identifies the likely
    disease and suggests treatment in Tamil.
@@ -30,7 +30,7 @@ spray pesticide, rain washes it off an hour later, money gone.
 | --- | --- | --- |
 | Advisory generation | Gemini 2.5 Flash (structured JSON output) | Forecast + fired agronomy rules -> plain-language Tamil/English advisory |
 | Crop Doctor | Gemini 2.5 Flash multimodal | Leaf photo -> diagnosis + treatment, Tamil + English |
-| Voice | on-device TTS (Cloud Text-to-Speech ta-IN as the scale path) | Reads advisories aloud |
+| Voice | pre-generated natural Tamil clips (Edge TTS ta-IN-PallaviNeural) + on-device TTS fallback (Cloud Text-to-Speech ta-IN as the scale path) | Reads advisories aloud |
 
 Gemini is doing real work, not decoration: it converts structured agronomy output into language a
 low-literacy farmer can act on, and it sees leaf photos. The rule engine underneath keeps it honest -
@@ -51,7 +51,7 @@ web (PWA)                Vercel serverless API              External
 ----------------------   --------------------------------   -------------------------
 React + TS               /api/panchayats  -> data/panchayats.json
 service worker           /api/forecast    -> lib/downscale -> Open-Meteo (free, keyless)
-on-device TTS            /api/advisory    -> lib/rules + Gemini (or committed fallback)
+pregenerated clips + on-device TTS   /api/advisory -> api/_rules + Gemini (or committed fallback)
 localStorage selection   /api/diagnose    -> Gemini multimodal
 ```
 
