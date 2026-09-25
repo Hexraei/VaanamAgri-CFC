@@ -1,7 +1,7 @@
-import { fetchCells, fetchElevation } from '../lib/openmeteo';
-import { downscale, neighbourPoints } from '../lib/downscale';
-import { panchayats } from './_data';
-import type { PanchayatForecast } from '../lib/types';
+import { fetchCells, fetchElevation } from './_openmeteo.js';
+import { downscale, neighbourPoints } from './_downscale.js';
+import { panchayats } from './_data.js';
+import type { PanchayatForecast } from './_types.js';
 
 export default async function handler(req: any, res: any) {
   const id = String(req.query?.panchayat ?? '');

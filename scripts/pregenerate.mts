@@ -6,10 +6,10 @@
 // Run: node --experimental-strip-types scripts/pregenerate.mts
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { fetchCells, fetchElevation } from '../lib/openmeteo.ts';
-import { downscale, neighbourPoints } from '../lib/downscale.ts';
-import { evaluateRules } from '../lib/rules.ts';
-import { buildFallbackSummary, buildGeminiPrompt, generateWithGemini } from '../lib/advisory.ts';
+import { fetchCells, fetchElevation } from '../api/_openmeteo.ts';
+import { downscale, neighbourPoints } from '../api/_downscale.ts';
+import { evaluateRules } from '../api/_rules.ts';
+import { buildFallbackSummary, buildGeminiPrompt, generateWithGemini } from '../api/_advisory.ts';
 
 const root = new URL('..', import.meta.url).pathname;
 const panchayats = JSON.parse(String(readFileSync(join(root, 'data/panchayats.json')))).panchayats;

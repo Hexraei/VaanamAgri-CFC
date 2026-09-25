@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Advisory, Panchayat } from '../../lib/types';
+import type { Advisory, Panchayat } from '../../api/_types';
 import { getAdvisory } from '../api';
 import { speakTamil, stopSpeaking } from '../tts';
 import type { Selection } from '../store';

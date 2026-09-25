@@ -3,8 +3,8 @@
 // For the hackathon we run them with node --experimental-strip-types instead.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { downscale, neighbourPoints } from '../lib/downscale.ts';
-import { evaluateRules } from '../lib/rules.ts';
+import { downscale, neighbourPoints } from '../api/_downscale.ts';
+import { evaluateRules } from '../api/_rules.ts';
 import { readFileSync } from 'node:fs';
 
 function mockCell(lat, lng, elev, tBase, pBase) {

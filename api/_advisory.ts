@@ -6,8 +6,8 @@
 //     composed into template sentences. This powers the pre-generated demo
 //     data and guarantees the live demo can never blank.
 
-import type { Advisory, AdvisoryAction, DayForecast, Panchayat } from './types';
-import type { Crop } from './rules';
+import type { Advisory, AdvisoryAction, DayForecast, Panchayat } from './_types.js';
+import type { Crop } from './_rules.js';
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 

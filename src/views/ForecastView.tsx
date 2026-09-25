@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Panchayat, PanchayatForecast } from '../../lib/types';
+import type { Panchayat, PanchayatForecast } from '../../api/_types';
 import { getForecast } from '../api';
 
 const DAY_TA = ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'புதன்', 'வியாழன்', 'வெள்ளி', 'சனி'];

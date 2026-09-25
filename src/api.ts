@@ -1,4 +1,4 @@
-import type { Advisory, Panchayat, PanchayatForecast } from '../lib/types';
+import type { Advisory, Panchayat, PanchayatForecast } from '../api/_types';
 
 export async function getPanchayats(): Promise<Panchayat[]> {
   const r = await fetch('/api/panchayats');

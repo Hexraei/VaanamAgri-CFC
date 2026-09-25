@@ -10,8 +10,8 @@
 //  3. Confidence from inter-cell spread: low spread = the coarse model grid
 //     agrees locally = high confidence.
 
-import type { CellForecast } from './openmeteo';
-import type { DayForecast } from './types';
+import type { CellForecast } from './_openmeteo.js';
+import type { DayForecast } from './_types.js';
 
 const LAPSE_C_PER_KM = -6.5;
 const CELL_OFFSET = 0.1; // degrees, ~11 km

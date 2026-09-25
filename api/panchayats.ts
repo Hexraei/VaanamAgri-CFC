@@ -1,4 +1,4 @@
-import { panchayatsDoc } from './_data';
+import { panchayatsDoc } from './_data.js';
 
 export default async function handler(_req: any, res: any) {
   res.setHeader('Cache-Control', 's-maxage=86400');

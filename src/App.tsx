@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { Panchayat } from '../lib/types';
+import type { Panchayat } from '../api/_types';
 import { getPanchayats } from './api';
 import { loadSelection, saveSelection } from './store';
 import AdvisoryView from './views/AdvisoryView';

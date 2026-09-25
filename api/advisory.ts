@@ -1,9 +1,9 @@
-import { fetchCells, fetchElevation } from '../lib/openmeteo';
-import { downscale, neighbourPoints } from '../lib/downscale';
-import { evaluateRules, type Crop } from '../lib/rules';
-import { buildFallbackSummary, buildGeminiPrompt, generateWithGemini } from '../lib/advisory';
-import { panchayats, crops, fallbacks } from './_data';
-import type { Advisory } from '../lib/types';
+import { fetchCells, fetchElevation } from './_openmeteo.js';
+import { downscale, neighbourPoints } from './_downscale.js';
+import { evaluateRules, type Crop } from './_rules.js';
+import { buildFallbackSummary, buildGeminiPrompt, generateWithGemini } from './_advisory.js';
+import { panchayats, crops, fallbacks } from './_data.js';
+import type { Advisory } from './_types.js';
 
 // In-warm-instance cache: panchayat+crop+stage -> advisory (30 min TTL)
 const cache = new Map<string, { at: number; advisory: Advisory }>();

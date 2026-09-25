@@ -2,7 +2,7 @@
 // Pure functions - no I/O - so they run identically in tests, the advisory
 // API, and the fallback generator.
 
-import type { DayForecast, AdvisoryAction } from './types';
+import type { DayForecast, AdvisoryAction } from './_types.js';
 
 interface RuleWhen {
   precip_mm_next24h_gte?: number;
