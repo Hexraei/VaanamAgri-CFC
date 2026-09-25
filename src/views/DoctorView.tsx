@@ -49,8 +49,10 @@ export default function DoctorView() {
         hidden
         onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])}
       />
-      <button className="voice-btn big" onClick={() => inputRef.current?.click()}>
-        📷 Take leaf photo / இலை புகைப்படம்
+      <button className="upload-zone" onClick={() => inputRef.current?.click()}>
+        <span className="cam">📷</span>
+        Take a leaf photo
+        <small>பாதிக்கப்பட்ட இலையை புகைப்படம் எடுக்கவும்</small>
       </button>
       {preview && <img className="leaf-preview" src={preview} alt="leaf" />}
       {busy && <p className="muted">Gemini is examining the leaf...</p>}

@@ -100,7 +100,15 @@ export default function AdvisoryView({
       {advisory && !loading && (
         <>
           <section className="card advisory-card">
+            <p className="eyebrow">இன்றைய அறிவுரை · Today's advisory</p>
             <p className="advisory-text">{showEn ? advisory.summaryEn : advisory.summaryTa}</p>
+            {advisory.forecastDays?.[0] && (
+              <div className="wx-strip">
+                <span>🌡️ {advisory.forecastDays[0].tmin}–{advisory.forecastDays[0].tmax}°C</span>
+                <span>🌧️ {advisory.forecastDays[0].precipProbMax}% · {advisory.forecastDays[0].precipMm} mm</span>
+                <span>💨 {advisory.forecastDays[0].windMaxKmh} km/h</span>
+              </div>
+            )}
             <div className="advisory-actions-row">
               <button
                 className="voice-btn"

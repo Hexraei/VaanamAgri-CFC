@@ -9,15 +9,18 @@ import AboutView from './views/AboutView';
 
 type Tab = 'advisory' | 'forecast' | 'doctor' | 'about';
 
-const TABS: Array<{ id: Tab; en: string; ta: string }> = [
-  { id: 'advisory', en: 'Advisory', ta: 'அறிவுரை' },
-  { id: 'forecast', en: 'Forecast', ta: 'வானிலை' },
-  { id: 'doctor', en: 'Crop Doctor', ta: 'பயிர் மருத்துவர்' },
-  { id: 'about', en: 'About', ta: 'பற்றி' }
+const TABS: Array<{ id: Tab; en: string; ta: string; icon: string }> = [
+  { id: 'advisory', en: 'Advisory', ta: 'அறிவுரை', icon: '🌾' },
+  { id: 'forecast', en: 'Forecast', ta: 'வானிலை', icon: '🌦️' },
+  { id: 'doctor', en: 'Crop Doctor', ta: 'பயிர் மருத்துவர்', icon: '🍃' },
+  { id: 'about', en: 'About', ta: 'பற்றி', icon: 'ℹ️' }
 ];
 
 export default function App() {
-  const [tab, setTab] = useState<Tab>('advisory');
+  const [tab, setTab] = useState<Tab>(() => {
+    const t = new URLSearchParams(window.location.search).get('tab');
+    return t === 'forecast' || t === 'doctor' || t === 'about' ? t : 'advisory';
+  });
   const [panchayats, setPanchayats] = useState<Panchayat[]>([]);
   const [sel, setSel] = useState(loadSelection());
   const [online, setOnline] = useState(navigator.onLine);
@@ -45,6 +48,7 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <div>
+          <img src="/icon.svg" alt="" className="logo-mark" />
           <span className="logo">Vaanam</span>
           <span className="logo-ta">வானம்</span>
         </div>
@@ -56,7 +60,8 @@ export default function App() {
       ) : (
         <>
           <button className="change-place" onClick={() => setSel((s) => ({ ...s, panchayatId: null }))}>
-            📍 {panchayat.name_ta} ({panchayat.name}), {panchayat.district} — change
+            <span className="place-label">📍 {panchayat.name_ta} ({panchayat.name}), {panchayat.district}</span>
+            <span className="change-link">change</span>
           </button>
           {tab === 'advisory' && <AdvisoryView panchayat={panchayat} sel={sel} setSel={setSel} />}
           {tab === 'forecast' && <ForecastView panchayat={panchayat} />}
@@ -69,6 +74,7 @@ export default function App() {
         <nav className="tabbar">
           {TABS.map((t) => (
             <button key={t.id} className={tab === t.id ? 'tab active' : 'tab'} onClick={() => setTab(t.id)}>
+              <span className="tab-icon" aria-hidden>{t.icon}</span>
               <span className="tab-ta">{t.ta}</span>
               <span className="tab-en">{t.en}</span>
             </button>
@@ -112,8 +118,10 @@ function PanchayatPicker({
           <h3 className="state-head">{state}</h3>
           {list.map((p) => (
             <button key={p.id} className="place-row" onClick={() => onPick(p.id)}>
-              <span className="place-ta">{p.name_ta}</span>
-              <span className="place-en">{p.name}, {p.district}</span>
+              <div>
+                <span className="place-ta">{p.name_ta}</span>
+                <span className="place-en">{p.name}, {p.district}</span>
+              </div>
             </button>
           ))}
         </section>

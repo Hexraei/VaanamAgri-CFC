@@ -11,7 +11,9 @@ export function loadSelection(): Selection {
     const raw = localStorage.getItem(KEY);
     if (raw) return JSON.parse(raw);
   } catch { /* ignore */ }
-  return { panchayatId: null, crop: 'paddy', stage: 'tillering' };
+  // deep-link: /?p=<panchayatId> opens a panchayat directly (demo/sharing)
+  const qp = new URLSearchParams(location.search).get('p');
+  return { panchayatId: qp, crop: 'paddy', stage: 'tillering' };
 }
 
 export function saveSelection(sel: Selection) {
