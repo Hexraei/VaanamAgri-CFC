@@ -4,8 +4,8 @@
   "description": "Panchayat-level farming advisories in Tamil, on any phone.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#4f46e5",
+  "background_color": "#f6f4ea",
+  "theme_color": "#45551f",
   "icons": [
     {"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
   ]
