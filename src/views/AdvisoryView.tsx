@@ -58,6 +58,7 @@ export default function AdvisoryView({
   useEffect(() => {
     let alive = true;
     setLoading(true);
+    setAdvisory(null);
     setErr(null);
     getAdvisory(panchayat.id, sel.crop, sel.stage)
       .then((a) => alive && setAdvisory(a))
@@ -65,8 +66,15 @@ export default function AdvisoryView({
       .finally(() => alive && setLoading(false));
     return () => {
       alive = false;
+      stopSpeaking();
     };
   }, [panchayat.id, sel.crop, sel.stage]);
+
+  useEffect(() => {
+    stopSpeaking();
+    setSpeaking(false);
+    return () => stopSpeaking();
+  }, [advisory, showEn]);
 
   const stages = STAGES[sel.crop] ?? [];
 
@@ -120,8 +128,8 @@ export default function AdvisoryView({
                   } else {
                     setSpeaking(true);
                     speakAdvisory(
-                      `${advisory.panchayat.id}__${advisory.crop}__${advisory.stage}`,
-                      advisory.summaryTa + '. ' + advisory.actions.map((a) => a.ta).join('. '),
+                      (showEn ? advisory.summaryEn + '. ' + advisory.actions.map((a) => a.en).join('. ') : advisory.summaryTa + '. ' + advisory.actions.map((a) => a.ta).join('. ')),
+                      showEn ? 'en' : 'ta',
                       () => setSpeaking(false)
                     );
                   }
