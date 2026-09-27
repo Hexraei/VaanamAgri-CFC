@@ -1,120 +1,96 @@
-// Voice delivery, two paths:
-//  1. Pre-generated natural Tamil clips (Edge TTS ta-IN-PallaviNeural, female)
-//     shipped as static assets for the committed advisory snapshots - studio
-//     quality, zero keys, works offline once cached.
-//  2. On-device speechSynthesis fallback for live-generated advisories,
-//     preferring the most natural Tamil voice the device offers.
-//
-// The playback path is deliberately defensive: media elements can fire
-// 'playing' before failing to decode, play() promises and error events can
-// both fire, and Chrome can silently drop speak() calls made synchronously
-// after cancel() - so every path is guarded, deduplicated and watchdogged,
-// and the UI always lands back in a non-speaking state.
-
-let taVoice: SpeechSynthesisVoice | null = null;
+// Always speak the text on screen, not an older panchayat/crop/stage clip.
+// The server uses a natural Tamil neural voice. A Tamil device voice is the
+// offline fallback; never substitute a Hindi voice for Tamil words.
 let currentAudio: HTMLAudioElement | null = null;
-let watchdog: number | null = null;
+let currentRequest: AbortController | null = null;
+let utteranceTimer: number | null = null;
+let currentUrl: string | null = null;
+let generation = 0;
 
-function pickVoice() {
+function deviceVoice(lang: 'ta' | 'en'): SpeechSynthesisVoice | undefined {
   const voices = window.speechSynthesis?.getVoices() ?? [];
-  const ta = voices.filter((v) => v.lang.toLowerCase().startsWith('ta'));
-  taVoice =
-    // cloud-backed device voices sound far more natural than legacy formant ones
-    ta.find((v) => /google/i.test(v.name)) ??
-    ta.find((v) => /female|pallavi|venba|saranya|kani|shruti|veena/i.test(v.name)) ??
-    ta[0] ??
-    voices.find((v) => v.lang.toLowerCase().startsWith('hi')) ??
-    null;
+  const available = voices.filter((v) => v.lang.toLowerCase().startsWith(lang));
+  return available.find((v) => /google|pallavi|venba|saranya|kani|shruti|veena|neerja/i.test(v.name)) ?? available[0];
 }
 
-if ('speechSynthesis' in window) {
-  pickVoice();
-  window.speechSynthesis.onvoiceschanged = pickVoice;
-}
-
-export function speakTamil(text: string, onEnd?: () => void): boolean {
-  if (!('speechSynthesis' in window)) return false;
-  // Chrome can silently drop an utterance spoken synchronously after cancel();
-  // let the cancel settle first.
-  window.speechSynthesis.cancel();
-  window.setTimeout(() => {
+function speakOnDevice(text: string, lang: 'ta' | 'en', done: () => void, token: number): void {
+  if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+    done();
+    return;
+  }
+  const voice = deviceVoice(lang);
+  // Request the same language as the text; never substitute Hindi for Tamil.
+  utteranceTimer = window.setTimeout(() => {
+    utteranceTimer = null;
+    if (token !== generation) return;
     const u = new SpeechSynthesisUtterance(text);
-    if (taVoice) u.voice = taVoice;
-    u.lang = taVoice?.lang ?? 'ta-IN';
+    if (voice) u.voice = voice;
+    u.lang = lang === 'ta' ? 'ta-IN' : 'en-IN';
     u.rate = 0.95;
     u.pitch = 1.05;
-    if (onEnd) {
-      u.onend = onEnd;
-      u.onerror = onEnd;
-    }
+    u.onend = done;
+    u.onerror = done;
     window.speechSynthesis.speak(u);
   }, 150);
-  return true;
 }
 
-// Play the committed studio clip for an advisory if one exists
-// (/audio/<panchayat>__<crop>__<stage>.mp3); otherwise fall back to on-device TTS.
-export function speakAdvisory(key: string, fallbackText: string, onEnd: () => void): void {
+export async function speakAdvisory(text: string, lang: 'ta' | 'en', onEnd: () => void): Promise<void> {
   stopSpeaking();
-  let settled = false;
-  let started = false;
-
+  const token = generation;
+  const controller = new AbortController();
+  currentRequest = controller;
+  let objectUrl: string | null = null;
+  let finished = false;
   const finish = () => {
-    if (settled) return;
-    settled = true;
-    if (watchdog !== null) {
-      window.clearTimeout(watchdog);
-      watchdog = null;
-    }
+    if (finished || token !== generation) return;
+    finished = true;
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    currentUrl = null;
     currentAudio = null;
+    currentRequest = null;
     onEnd();
   };
-
-  const toSpeech = () => {
-    if (settled) return;
-    settled = true;
-    if (watchdog !== null) {
-      window.clearTimeout(watchdog);
-      watchdog = null;
-    }
-    if (currentAudio) {
-      currentAudio.pause();
+  try {
+    const response = await fetch('/api/voice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, lang }),
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error('voice unavailable');
+    const blob = await response.blob();
+    if (!blob.size || token !== generation) return;
+    objectUrl = URL.createObjectURL(blob);
+    currentUrl = objectUrl;
+    const audio = new Audio(objectUrl);
+    currentAudio = audio;
+    audio.addEventListener('ended', finish, { once: true });
+    audio.addEventListener('error', () => {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
       currentAudio = null;
-    }
-    if (!speakTamil(fallbackText, onEnd)) onEnd();
-  };
-
-  const audio = new Audio();
-  currentAudio = audio;
-  audio.preload = 'auto';
-  audio.addEventListener('playing', () => {
-    started = true;
-    // on slow connections the watchdog fallback may already have taken over;
-    // never let a late-starting clip talk over the on-device voice
-    if (settled) audio.pause();
-  });
-  // missing clip (or an HTML SPA-fallback body) ends here -> on-device voice
-  audio.addEventListener('error', toSpeech);
-  audio.addEventListener('ended', finish);
-  audio.src = `/audio/${key}.mp3`;
-
-  // watchdog: if playback neither started nor errored promptly, fall back
-  watchdog = window.setTimeout(() => {
-    if (!started) toSpeech();
-  }, 2500);
-
-  const playPromise = audio.play();
-  if (playPromise) playPromise.catch(toSpeech);
+      if (token === generation) speakOnDevice(text, lang, finish, token);
+    }, { once: true });
+    await audio.play();
+  } catch {
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = null;
+    currentAudio = null;
+    if (token === generation) speakOnDevice(text, lang, finish, token);
+  }
 }
 
-export function stopSpeaking() {
-  window.speechSynthesis?.cancel();
-  if (watchdog !== null) {
-    window.clearTimeout(watchdog);
-    watchdog = null;
-  }
+export function stopSpeaking(): void {
+  generation++;
+  currentRequest?.abort();
+  currentRequest = null;
+  if (utteranceTimer !== null) window.clearTimeout(utteranceTimer);
+  utteranceTimer = null;
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
+  if (currentUrl) URL.revokeObjectURL(currentUrl);
+  currentUrl = null;
+  window.speechSynthesis?.cancel();
 }
